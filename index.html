@@ -12,43 +12,45 @@
       padding: 2rem;
     }
     #waveform {
-      margin-top: 2rem;
+      margin-top: 1rem;
       margin-bottom: 2rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       cursor: pointer;
     }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #4F4A85;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #383351;
+    }
   </style>
 </head>
 <body>
   <h1>Wavesurfer.js Basic Audio Player</h1>
-  <p>Click on the waveform below to play the audio!</p>
+  <p>Click the play button or the waveform to play the audio.</p>
+
+  <div class="controls">
+    <button id="playBtn">Play</button>
+  </div>
 
   <div id="waveform"></div>
 
   <!-- Include Wavesurfer.js from CDN -->
   <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
 
-  <script>
-    // Initialize Wavesurfer
-    const wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#4F4A85',
-      progressColor: '#383351',
-      url: 'audio.mp3', // The audio file to load
-    });
-
-    // Play/pause on interaction (click)
-    wavesurfer.on('interaction', () => {
-      if (!wavesurfer.isPlaying()) {
-        wavesurfer.play();
-      }
-    });
-
-    // We also could just toggle play on the container click if we want to play/pause
-    // wavesurfer.on('click', () => {
-    //   wavesurfer.playPause();
-    // });
-  </script>
+  <!-- Include our custom player script -->
+  <script src="player.js"></script>
 </body>
 </html>
